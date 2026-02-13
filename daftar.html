@@ -380,16 +380,26 @@ Pendapatan: ${pendapatan}
 ${motivasi}
 
 *_Mohon konfirmasi pendaftaran. Jazakumullah khairan._*`;
-            
             // Kirim ke WA Admin
-            setTimeout(() => {
-                window.open(`https://wa.me/6283132591074?text=${encodeURIComponent(pesan)}`, '_blank');
-                
-                // Kembalikan tombol
-                document.getElementById('textBtn').style.display = 'inline-block';
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('btnKirim').disabled = false;
-                
+setTimeout(() => {
+    window.open(`https://wa.me/6283132591074?text=${encodeURIComponent(pesan)}`, '_blank');
+    
+    // Kembalikan tombol
+    document.getElementById('textBtn').style.display = 'inline-block';
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('btnKirim').disabled = false;
+    
+    // Tampilkan notifikasi
+    document.getElementById('notifikasi').classList.remove('hidden');
+    
+    // Sembunyikan notifikasi setelah 5 detik
+    setTimeout(() => {
+        document.getElementById('notifikasi').classList.add('hidden');
+    }, 5000);
+    
+    // Reset form
+    document.getElementById('formDaftar').reset();
+}, 1000);
                 // Tanya mau reset form atau tidak
                 if (confirm('✅ Pendaftaran berhasil dikirim!\n\nPesan sudah terbuka di WhatsApp.\n\nKlik OK untuk mengisi formulir lagi.')) {
                     document.getElementById('formDaftar').reset();
@@ -400,3 +410,4 @@ ${motivasi}
 </body>
 
 </html>
+
