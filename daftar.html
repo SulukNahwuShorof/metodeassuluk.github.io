@@ -49,7 +49,7 @@
             <!-- Header Form -->
             <div class="text-center mb-8">
                 <h1 class="text-3xl md:text-4xl font-bold text-green-800 mb-2">📋 Formulir Pendaftaran</h1>
-                <h2 class="text-xl text-gray-600">Santri Baru 2026 / 1447 H</h2>
+               <h2 class="text-xl text-gray-600" id="tahunDisplay">Santri Baru 2026 / 1447 H</h2> 
                 <p class="text-green-600 mt-2 arabic">بسم الله الرحمن الرحيم</p>
             </div>
 
@@ -595,9 +595,23 @@ setTimeout(() => {
         document.getElementById('kodepos').value = postalCode || '';
     });
             </script>
+            
+    <script>
+    // Set tahun otomatis saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+        const tahunMasehi = new Date().getFullYear(); // 2026, 2027, dst
+        
+        // Hitung tahun Hijriah (perkiraan: tahun Hijriah = tahun Masehi - 622 + (tahunMasehi-622)/33)
+        const tahunHijriah = Math.floor((tahunMasehi - 622) * (33/32));
+        
+        // Update tampilan
+        document.getElementById('tahunDisplay').innerHTML = `Santri Baru ${tahunMasehi} / ${tahunHijriah} H`;
+    });
+    </script>
 </body>
 
 </html>
+
 
 
 
